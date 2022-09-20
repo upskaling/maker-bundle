@@ -69,7 +69,7 @@ class SweetFoodController extends AbstractController
     #[Route('/{id}', name: 'app_sweet_food_delete', methods: ['POST'])]
     public function delete(Request $request, SweetFood $sweetFood, SweetFoodRepository $sweetFoodRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$sweetFood->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$sweetFood->getId(), (string) $request->request->get('_token'))) {
             $sweetFoodRepository->remove($sweetFood, true);
         }
 

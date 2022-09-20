@@ -120,11 +120,11 @@ class <?= $class_name ?> extends AbstractController
 <?php } ?>
     {
 <?php if (isset($repository_full_class_name) && $generator->repositoryHasAddRemoveMethods($repository_full_class_name)) { ?>
-        if ($this->isCsrfTokenValid('delete'.$<?= $entity_var_singular ?>->get<?= ucfirst($entity_identifier) ?>(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$<?= $entity_var_singular ?>->get<?= ucfirst($entity_identifier) ?>(), (string) $request->request->get('_token'))) {
             $<?= $repository_var ?>->remove($<?= $entity_var_singular ?>, true);
         }
 <?php } else { ?>
-        if ($this->isCsrfTokenValid('delete'.$<?= $entity_var_singular ?>->get<?= ucfirst($entity_identifier) ?>(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$<?= $entity_var_singular ?>->get<?= ucfirst($entity_identifier) ?>(), (string) $request->request->get('_token'))) {
             $entityManager->remove($<?= $entity_var_singular ?>);
             $entityManager->flush();
         }
